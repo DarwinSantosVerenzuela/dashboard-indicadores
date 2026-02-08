@@ -1,86 +1,48 @@
 <template>
   <NuxtLink to="/goals" class="kpi-card goals">
     <div class="card-top">
-      <div class="icon-box">👑</div>
-      <div class="arrow-box">↗</div>
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#60a5fa" stroke-width="1.5">
+          <path d="M6 9l6 6 6-6" />
+          <path d="M12 3v12" />
+          <path d="M5 20h14" />
+        </svg>
+      </div>
+      <div class="arrow-box">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#60a5fa" stroke-width="2.5">
+          <path d="M7 17L17 7M17 7H7M17 7V17" />
+        </svg>
+      </div>
     </div>
     <div class="card-bottom">
       <div class="amount-row">
         <span class="percentage">80%</span>
-        <span class="detail">$800 of $1000</span>
+        <span class="detail">$800 de $1k</span>
       </div>
-      <div class="label">Active Donation Goals</div>
+      <div class="label">Metas de donación activas</div>
     </div>
   </NuxtLink>
 </template>
 
 <style scoped>
 .kpi-card {
-  background: white;
-  border-radius: var(--radius-xl);
-  padding: 24px;
+  background: #f1f5f9; /* Gris un poco más oscuro */
+  border-radius: 24px;
+  padding: 24px; /* More padding */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-decoration: none;
-  color: var(--color-text-dark);
-  transition: transform 0.2s;
-  height: 180px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  color: #111827;
+  height: 160px; /* Slightly larger */
+  box-shadow: none; /* Sin sombra */
 }
 
-.kpi-card:hover {
-  transform: translateY(-4px);
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.icon-box {
-  width: 40px;
-  height: 40px;
-  background: var(--color-gray-soft);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-}
-
-.arrow-box {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--color-gray-medium);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-}
-
-.amount-row {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-xs);
-}
-
-.percentage {
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
-.detail {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-}
-
-.label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-}
+.card-top { display: flex; justify-content: space-between; align-items: center; }
+.icon-box { width: 36px; height: 36px; background: #dbeafe; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.arrow-box { width: 32px; height: 32px; background: #dbeafe; border: 1px solid #bfdbfe; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.amount-row { display: flex; align-items: baseline; gap: 6px; }
+.percentage { font-size: 1.8rem; font-weight: 800; }
+.detail { font-size: 0.75rem; color: #9ca3af; font-weight: 500; }
+.label { font-size: 0.8rem; font-weight: 600; color: #6b7280; }
 </style>

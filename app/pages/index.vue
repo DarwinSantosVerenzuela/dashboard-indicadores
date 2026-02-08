@@ -1,47 +1,86 @@
 <template>
-  <div class="dashboard-content">
-    <DashboardHeader />
-    
-    <div class="kpi-grid">
-      <KpiDonations />
-      <KpiGoals />
-      <KpiVisitorsCount />
-      <KpiTotal />
+  <div class="dashboard-view">
+    <div class="header-anchor">
+      <DashboardHeader />
     </div>
+    
+    <div class="content-scroller">
+      <div class="inner-stack">
+        <!-- KPI Cards -->
+        <div class="kpi-set">
+          <KpiDonations />
+          <KpiGoals />
+          <KpiVisitorsCount />
+          <KpiTotal />
+        </div>
 
-    <div class="charts-grid">
-      <ChartStatistics />
-      <ChartVisitors />
+        <!-- Charts Row -->
+        <div class="visual-set">
+          <ChartStatistics class="main-vis" />
+          <ChartVisitors class="side-vis" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.dashboard-content {
+.dashboard-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0 40px;
+  background: white;
   flex: 1;
-  padding: var(--space-lg) var(--space-xl);
-  overflow-y: auto;
+  min-height: 0;
 }
 
-.kpi-grid {
+.header-anchor {
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.content-scroller {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-bottom: 40px;
+}
+
+.inner-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Reduced gap */
+  margin-top: 0;
+  min-height: min-content;
+}
+
+.kpi-set {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-lg);
-  margin-bottom: var(--space-lg);
+  gap: 16px; /* Reduced gap */
 }
 
-.charts-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: var(--space-lg);
+.visual-set {
+  display: flex;
+  gap: 16px; /* Reduced gap */
+  min-height: 520px;
 }
 
-@media (max-width: 1200px) {
-  .kpi-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .charts-grid {
-    grid-template-columns: 1fr;
-  }
+.main-vis { flex: 1.8; }
+.side-vis { flex: 1; }
+
+@media (max-width: 1400px) {
+  .visual-set { flex-direction: column; min-height: auto; }
+}
+
+@media (max-width: 1000px) {
+  .kpi-set { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .kpi-set { grid-template-columns: 1fr; }
+  .dashboard-view { padding: 0 16px; }
 }
 </style>

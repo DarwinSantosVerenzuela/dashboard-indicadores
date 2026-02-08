@@ -1,47 +1,63 @@
+<script setup>
+const isSidebarCollapsed = useState('isSidebarCollapsed', () => true)
+</script>
+
 <template>
-  <div class="app-layout">
-    <DashboardSidebar />
-    <main class="main-viewport">
-      <NuxtPage />
-    </main>
-  </div>
+  <ClientOnly>
+    <div class="main-shell">
+      <div class="layout-box" :class="{ 'collapsed': isSidebarCollapsed }">
+        <DashboardSidebar />
+        <main class="page-container">
+          <NuxtPage />
+        </main>
+      </div>
+    </div>
+  </ClientOnly>
 </template>
 
 <style>
-/* Global resets and layout */
+/* Global Resets */
 :root {
   --font-main: 'Inter', system-ui, sans-serif;
+  --bg-app: #f8f9fa;
+  --sidebar-width: 280px;
+  --sidebar-width-collapsed: 88px;
 }
 
-body {
+* { box-sizing: border-box; }
+
+body, html {
   margin: 0;
-  font-family: var(--font-main);
-  background-color: #eff1f3;
-}
-
-.app-layout {
-  display: flex;
-  height: 100vh;
+  padding: 0;
   width: 100vw;
+  height: 100vh;
   overflow: hidden;
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
 }
 
-.main-viewport {
-  flex: 1;
+.main-shell {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.layout-box {
+  display: flex;
+  width: 100%;
   height: 100%;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Animations */
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.2s;
-}
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
+.page-container {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  /* Ensure a base background so we can see if it renders */
+  background: white;
 }
 </style>

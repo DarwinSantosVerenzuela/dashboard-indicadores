@@ -1,68 +1,75 @@
 <template>
-  <div class="page-container">
-    <div class="back-link">
-      <NuxtLink to="/">← Back to Dashboard</NuxtLink>
-    </div>
-    <header class="page-header">
-      <h1>Visitors Analytics</h1>
-      <p>In-depth look at your audience segments and engagement.</p>
-    </header>
+  <div class="detail-page">
+    <DashboardHeader />
+    
+    <div class="detail-content">
+      <div class="back-nav">
+        <NuxtLink to="/" class="back-btn">← Back to Dashboard</NuxtLink>
+      </div>
 
-    <div class="stats-wrapper">
-       <ChartVisitors />
-       <div class="data-table">
-         <h3>Retention Rate</h3>
-         <div class="retention-stat">
-            <span class="value">64%</span>
-            <span class="label">Average retention this month</span>
-         </div>
-       </div>
+      <div class="grid-layout">
+        <ChartVisitors />
+        
+        <div class="detail-card info-card">
+          <h2>Audience Insights</h2>
+          <p>Detailed breakdown of visitor behavior and demographics.</p>
+          
+          <div class="behavior-stats">
+             <div class="stat-item">
+               <span>New Visitors</span>
+               <span class="percent">74%</span>
+             </div>
+             <div class="stat-item">
+               <span>Returning</span>
+               <span class="percent">26%</span>
+             </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.page-container {
-  padding: var(--space-xl);
-  max-width: 1000px;
-  margin: 0 auto;
+.detail-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--space-xl);
+  height: 100vh;
+  overflow: hidden;
 }
 
-.back-link {
-  margin-bottom: var(--space-md);
+.detail-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: var(--space-xl);
 }
 
-.back-link a {
-  color: var(--color-blue-dark);
-  font-weight: 600;
+.back-nav {
+  margin: var(--space-md) 0;
 }
 
-.stats-wrapper {
+.grid-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-xl);
-  margin-top: var(--space-xl);
 }
 
-.data-table {
+.detail-card {
   background: white;
-  padding: var(--space-xl);
   border-radius: var(--radius-xl);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  padding: var(--space-xl);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+
+.stat-item {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-gray-soft);
+  font-weight: 600;
 }
 
-.retention-stat {
-  text-align: center;
-}
-
-.retention-stat .value {
-  font-size: 4rem;
-  font-weight: 800;
-  color: var(--color-blue-dark);
-  display: block;
-}
+.percent { color: var(--color-accent); }
 </style>
